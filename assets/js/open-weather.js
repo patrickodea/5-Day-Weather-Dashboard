@@ -30,7 +30,14 @@ function getApi(){
     .then(function (weatherData) {
         console.log(weatherData);
 
-        nameWeather.innerHTML = weatherData.name;
+        var currentDate = new Date();
+        var formattedDate = currentDate.toLocaleDateString("en-US",{
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+        });
+
+        nameWeather.innerHTML = weatherData.name + "  (" + formattedDate + ")";
         temp.innerHTML = "Temp: " + weatherData.main.temp + "°F";
         wind.innerHTML = "Wind: " + weatherData.wind.speed + " MPH";
         humidity.innerHTML = "Humidity: " + weatherData.main.humidity + "%";
@@ -39,6 +46,7 @@ function getApi(){
         console.log(error);
     });
 }
+
 
 
 button.addEventListener("click", getApi);
