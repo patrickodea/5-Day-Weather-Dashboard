@@ -30,10 +30,10 @@ function getApi(){
     .then(function (weatherData) {
         console.log(weatherData);
 
-        nameWeather.textcontent = weatherData.name;
-        temp.textContent = weatherData.main.temp;
-        wind.textContent = weatherData.wind.speed;
-        humidity.textContent = weatherData.main.humidity;
+        nameWeather.innerHTML = weatherData.name;
+        temp.innerHTML = "Temp: " + weatherData.main.temp + "°F";
+        wind.innerHTML = "Wind: " + weatherData.wind.speed + " MPH";
+        humidity.innerHTML = "Humidity: " + weatherData.main.humidity + "%";
     })
     .catch(function(error) {
         console.log(error);
