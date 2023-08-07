@@ -17,18 +17,20 @@ function getApi(){
     
     .then(function (data) {
         console.log(data)
+        
+        var lat = data.city.coord.lat;
+        var lon = data.city.coord.lon;
 
-        var lat = response.data.city.coord.lat;
-        var lon = response.data.city.coord.lon;
-
-    fetch ("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=6257fbb45c08f20e1cc17462b2450f53");  
+        var weatherApi = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=6257fbb45c08f20e1cc17462b2450f53";
+        return fetch (weatherApi);
+    })      
     .then(function (weatherResponse) {
         return weatherResponse.json();
     })
     .then(function (weatherData) {
         console.log(weatherData);
 
-        nameWeather.textContent = weatherData.name;
+        nameWeather.textcontent = weatherData.name;
         temp.textContent = weatherData.main.temp;
         wind.textContent = weatherData.wind.speed;
         humidity.textContent = weatherData.main.humidity;
@@ -36,7 +38,6 @@ function getApi(){
     .catch(function(error) {
         console.log(error);
     });
-});
 }
 
 
