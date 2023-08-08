@@ -19,7 +19,7 @@ function getApi(){
     }
     else {
         
-        cityAll = JSON.parse(localStorage.getItem("city")); //parse
+        localStorage.getItem("city"); //parse
     }
 
     localStorage.setItem("city", city);
