@@ -11,6 +11,20 @@ function getApi(){
     var geocoding= "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=6257fbb45c08f20e1cc17462b2450f53";
     var lat, lon;
 
+    var cityAll = [];
+
+    if(localStorage.getItem("city") === null){
+        
+        localStorage.setItem("city", JSON.stringify(cityAll)); //stringify
+    }
+    else {
+        
+        cityAll = JSON.parse(localStorage.getItem("city")); //parse
+    }
+
+    localStorage.setItem("city", city);
+
+
 //fetching geocoding api
     fetch(geocoding)
     .then(function (response) {
