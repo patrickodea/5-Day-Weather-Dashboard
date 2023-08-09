@@ -5,26 +5,21 @@ var temp = document.getElementById("temp");
 var wind = document.getElementById("wind");
 var humidity = document.getElementById("humidity");
 
+
 //api call
-function getApi(){
-    var city = cityInput.value;
+function getApi(city){
+    console.log(city);
     var geocoding= "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=6257fbb45c08f20e1cc17462b2450f53";
     var lat, lon;
 
-    var cityAll = [];
+    var cities = JSON.parse(localStorage.getItem("cities")) || [];
 
-    if(localStorage.getItem("city") === null){
-        
-        localStorage.setItem("city", JSON.stringify(cityAll)); //stringify
-    }
-    else {
-        
-        localStorage.getItem("city"); //parse
+    if(!cities.includes(city)){
+        cities.push(city);
+        localStorage.setItem("cities", JSON.stringify(cities));
     }
 
-    localStorage.setItem("city", city);
-
-
+    displayLocal();
 //fetching geocoding api
     fetch(geocoding)
     .then(function (response) {
@@ -67,6 +62,29 @@ function getApi(){
     });
 }
 
+function displayLocal(){
+    document.querySelector("#lsOut").innerHTML = "";
+    var cities = JSON.parse(localStorage.getItem("cities"));
+    if(cities){
+        for(i = 0; i < cities.length; i++){
+            var cityButton = document.createElement("button");
+            cityButton.textContent = cities[i];
+            document.querySelector("#lsOut").append(cityButton);
+        }
+    }
+}
 
 
-button.addEventListener("click", getApi);
+displayLocal();
+
+button.addEventListener("click", function(){
+    var city = cityInput.value;
+    getApi(city);
+});
+
+document.querySelector("#lsOut").addEventListener("click", function(e){
+    var city = e.target.textContent
+    if(e.target.tagName === "BUTTON"){
+        getApi(city);
+    }
+});
