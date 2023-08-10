@@ -37,18 +37,18 @@ function getForecast(city) {
             });
 
             var cardIndex = i + 1; // Adjusted index for card IDs
-            var cardName = "card" + cardIndex;
 
             var nameElement = document.getElementById("name" + cardIndex);
             var tempElement = document.getElementById("temp" + cardIndex);
             var windElement = document.getElementById("wind" + cardIndex);
             var humidityElement = document.getElementById("humidity" + cardIndex);
 
-            nameElement.innerHTML = city + " (" + formattedDate + ")";
+            nameElement.innerHTML = formattedDate;
             tempElement.innerHTML = "Temp: " + forecastData.main.temp + "°F";
             windElement.innerHTML = "Wind: " + forecastData.wind.speed + " MPH";
             humidityElement.innerHTML = "Humidity: " + forecastData.main.humidity + "%";
         }
+
     })
     .catch(function(error) {
         console.log(error);

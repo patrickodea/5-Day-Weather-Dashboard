@@ -56,6 +56,11 @@ function getApi(city){
         temp.innerHTML = "Temp: " + weatherData.main.temp + "°F";
         wind.innerHTML = "Wind: " + weatherData.wind.speed + " MPH";
         humidity.innerHTML = "Humidity: " + weatherData.main.humidity + "%";
+
+        var iconCode = weatherData.weather[0].icon;
+var iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
+document.getElementById("weatherIcon").src = iconUrl;
+
     })
     .catch(function(error) {
         console.log(error);
