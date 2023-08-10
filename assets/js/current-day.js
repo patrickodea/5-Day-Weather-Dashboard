@@ -58,7 +58,7 @@ function getApi(city){
         humidity.innerHTML = "Humidity: " + weatherData.main.humidity + "%";
 
         var iconCode = weatherData.weather[0].icon;
-var iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
+    var iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
 document.getElementById("weatherIcon").src = iconUrl;
 
     })
