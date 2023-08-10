@@ -5,7 +5,7 @@ This repository allows users to search for a city, and view the current and 5 da
 
 ![finalproduct](./assets/js/img/finalImg.png)
 
-To view the Webpage click [here] (https://patrickodea.github.io/Password-Generator/).
+To view the Webpage click [here] (https://patrickodea.github.io/5-Day-Weather-Dashboard/).
 
 ## Usage
 Users will type a city name into the search bar.
