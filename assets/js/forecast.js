@@ -1,10 +1,21 @@
 var cityInput = document.getElementById("formInput");
 var button = document.getElementById("button");
 
-function getForecast() {
-    var city = cityInput.value;
+function getForecast(city) {
+    console.log(city);
     var geocoding = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=6257fbb45c08f20e1cc17462b2450f53";
 
+    var cities = JSON.parse(localStorage.getItem("cities")) || [];
+
+    if(!cities.includes(city)){
+        cities.push(city);
+        localStorage.setItem("cities", JSON.stringify(cities));
+    }
+
+    displayLocal();
+    
+    
+    
     fetch(geocoding)
     .then(function (response) {
         return response.json();
@@ -43,7 +54,30 @@ function getForecast() {
         console.log(error);
     });
 }
+function displayLocal(){
+    document.querySelector("#lsOut").innerHTML = "";
+    var cities = JSON.parse(localStorage.getItem("cities"));
+    if(cities){
+        for(i = 0; i < cities.length; i++){
+            var cityButton = document.createElement("button");
+            cityButton.textContent = cities[i];
+            document.querySelector("#lsOut").append(cityButton);
+        }
+    }
+}
 
-button.addEventListener("click", getForecast);
+displayLocal();
+
+button.addEventListener("click", function(){
+    var city = cityInput.value;
+    getForecast(city);
+});
+
+document.querySelector("#lsOut").addEventListener("click", function(e){
+    var city = e.target.textContent
+    if(e.target.tagName === "BUTTON"){
+        getForecast(city);
+    }
+});
 
 
